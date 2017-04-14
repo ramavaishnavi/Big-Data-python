@@ -28,8 +28,8 @@ Some Notes,  quick start and tutorials and applications of Big Data. All the exa
 
 
 # Contents
-- [Cloudera VM: Quick Setup ](/Uncertainty_Quantification/clouderavm)
-- [Map Reduce: Word Count ](/Uncertainty_Quantification/wordcount)
+- [Cloudera VM: Quick Setup ](/Big-Data-python/clouderavm)
+- [Map Reduce: Word Count ](/Big-Data-python/wordcount)
 
 
 # links and references
