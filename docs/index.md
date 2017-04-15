@@ -28,7 +28,7 @@ Some Notes,  quick start and tutorials and applications of Big Data. All the exa
 
 
 # Contents
-- [Cloudera VM: Quick Setup ](/Big-Data-python/clouderavm)
+- [Cloudera VM: Quick Setup ](/Big-Data-python/cloudera_basic_setup)
 - [Map Reduce: Word Count ](/Big-Data-python/wordcount)
 
 
