@@ -1,4 +1,4 @@
-#!/home/vaishnavi/anaconda2/bin/python
+#!/usr/local/bin/python2.7
 
 import sys
 import re
