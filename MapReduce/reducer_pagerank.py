@@ -6,7 +6,9 @@ import os
 
 filename = os.getenv('map_input_file')
 
-d=0.851
+d= float( os.getenv('pagerankdamping') )
+# d=0.85
+
 p=0
 L1=''
 L2=''
