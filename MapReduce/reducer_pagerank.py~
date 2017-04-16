@@ -1,0 +1,27 @@
+#!/usr/local/bin/python2.7
+
+import sys
+import re
+import os
+
+filename = os.getenv('map_input_file')
+
+p=0
+d=0.85
+
+for line in sys.stdin:
+    # remove leading and trailing whitespace
+    line = line.strip()
+    # split the line into words
+    if '*_*' in line:
+    	line=line.replace('*_*','')
+    	words=split('\t')
+    	adjID=words[0]
+    	PR=int(words[1])
+    	p=p+PR
+    else:
+    	final_line=line
+    			
+L1=final_line.split('\t')[0]
+L2 =final_line.split('\t')[1].split('_')[0]
+L3 =final_line.split('\t')[1].split('_')[1]

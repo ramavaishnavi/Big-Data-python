@@ -1,29 +1,33 @@
 #!/usr/local/bin/python2.7
 
+from __future__ import division
 import sys
 import re
 import os
 
 filename = os.getenv('map_input_file')
 
-alphabet = set(['a','b','c','d','e','f','g','h','i','j','k',
-                'l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'])
-# input comes from STDIN (standard input)
 for line in sys.stdin:
-    # remove leading and trailing whitespace
-    line = line.strip()
-    # split the line into words
-    # words = line.split()
+	# remove leading and trailing whitespace
+	line = line.strip()
+	if len(line.replace(' ',''))==0:
+		continue
 
-    # using regex to split the words
-    words = re.split('[ ,.:?!\\"\\\']+', line, flags=re.IGNORECASE)
-    words = [w for w in words if w!='' and w!=' ']
-
-    # increase counters
-    for word in words:
-        # word = word.replace('"','').replace('?','').replace("'",'').replace(".",'').replace(",",'').replace(":",'').replace(";",'')
-
-        alpha = word.lower()[0]
-
-        if alpha in alphabet:
-            print '%s\t%s' % (alpha, 1)
+	# split the line into words
+	words = line.split('\t')
+	nodeID=words[0]
+	
+	nodePRLINKS=words[1].split('_')
+	
+	nodePR=float(nodePRLINKS[0])
+	nodeLINKS=nodePRLINKS[1].split(',')
+	
+	p=nodePR/len(nodeLINKS)
+	
+	# send the line
+	print line
+	
+	for adj in nodeLINKS:
+		print '%s\t%s*_*' % (adj, p)
+			
+			

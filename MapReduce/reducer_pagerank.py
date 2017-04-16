@@ -1,39 +1,55 @@
 #!/usr/local/bin/python2.7
-
-from operator import itemgetter
+from __future__ import division
 import sys
+import re
+import os
 
-current_alpha = None
-current_count = 0
-alpha = None
+filename = os.getenv('map_input_file')
 
-# input comes from STDIN
+d=0.851
+p=0
+L1=''
+L2=''
+L3=''
+currrent_key=None
+
 for line in sys.stdin:
     # remove leading and trailing whitespace
     line = line.strip()
-
-    # parse the input we got from mapper.py
-    alpha, count = line.split('\t', 1)
-
-    # convert count (currently a string) to int
-    try:
-        count = int(count)
-    except ValueError:
-        # count was not a number, so silently
-        # ignore/discard this line
+    if len(line.replace(' ',''))==0:
         continue
 
-    # this IF-switch only works because Hadoop sorts map output
-    # by key (here: word) before it is passed to the reducer
-    if current_alpha == alpha:
-        current_count += count
-    else:
-        if current_alpha:
-            # write result to STDOUT
-            print '%s\t%s' % (current_alpha, current_count)
-        current_count = count
-        current_alpha = alpha
+    # split the line into words
+    key=line.split('\t')[0]
 
-# do not forget to output the last word if needed!
-if current_alpha == alpha:
-    print '%s\t%s' % (current_alpha, current_count)
+    if currrent_key is None:
+        currrent_key=key
+
+    if currrent_key!=key:
+        N=len(L3.split(','))
+        L2=str( (1-d)/N+d*p )
+        print L1+'\t'+L2+'_'+L3
+        p=0
+        L1=''
+        L2=''
+        L3=''
+        currrent_key=key
+
+    if '*_*' in line:
+    	line=line.replace('*_*','')
+    	words=line.split('\t')
+    	adjID=words[0]
+    	PR=float(words[1])
+    	p=p+PR
+    else:
+    	final_line=line		
+        L1=final_line.split('\t')[0]
+        L2 =final_line.split('\t')[1].split('_')[0]
+        L3 =final_line.split('\t')[1].split('_')[1]
+        N=len(L3.split(','))
+
+L2=str( (1-d)/N+d*p )
+print L1+'\t'+L2+'_'+L3
+
+
+
