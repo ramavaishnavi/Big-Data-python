@@ -6,6 +6,9 @@ import os
 
 filename = os.getenv('map_input_file')
 
+iterno= int( os.getenv('iterno') )
+maxiter= int( os.getenv('maxiter') )
+
 d= float( os.getenv('pagerankdamping') )
 # d=0.85
 
@@ -30,7 +33,11 @@ for line in sys.stdin:
     if currrent_key!=key:
         N=len(L3.split(','))
         L2=str( (1-d)/N+d*p )
-        print L1+'\t'+L2+'_'+L3
+        if iterno==maxiter:
+            print L1+'\t'+L2
+        else:
+            print L1+'\t'+L2+'_'+L3
+        
         p=0
         L1=''
         L2=''
@@ -51,7 +58,10 @@ for line in sys.stdin:
         N=len(L3.split(','))
 
 L2=str( (1-d)/N+d*p )
-print L1+'\t'+L2+'_'+L3
+if iterno==maxiter:
+    print L1+'\t'+L2
+else:
+    print L1+'\t'+L2+'_'+L3
 
 
 

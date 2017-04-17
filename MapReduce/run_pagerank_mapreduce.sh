@@ -2,7 +2,7 @@
 
 
 # define all the variable
-maxiter=2
+maxiter=10
 export pagerankdamping="0.85"
 
 
@@ -36,8 +36,8 @@ for i in `seq 1 $maxiter`;
 do
 
 #run the streaming code
-/usr/bin/hadoop jar $hadoopstreamingjar  -file $mapperfile -mapper $mapperfile -file $reducerfile -reducer $reducerfile -input $inputfolder -output $outputfolder -cmdenv pagerankdamping=$pagerankdamping
-
+/usr/bin/hadoop jar $hadoopstreamingjar  -file $mapperfile -mapper $mapperfile -file $reducerfile -reducer $reducerfile -input $inputfolder -output $outputfolder -cmdenv pagerankdamping=$pagerankdamping -cmdenv iterno=$i -cmdenv maxiter=$maxiter
+# 
 
 
 if [ $i != $maxiter ]; then

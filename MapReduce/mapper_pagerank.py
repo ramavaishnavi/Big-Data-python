@@ -25,9 +25,9 @@ for line in sys.stdin:
 	p=nodePR/len(nodeLINKS)
 	
 	# send the line
-	print line
+	print '%03d\t%s' % (int(words[0]), words[1])
 	
 	for adj in nodeLINKS:
-		print '%s\t%s*_*' % (adj, p)
+		print '%03d\t%s*_*' % (int(adj), p)
 			
 			
